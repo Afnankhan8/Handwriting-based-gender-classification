@@ -1,83 +1,122 @@
-Handwriting-Based Gender Classification ✍️👩‍🧑
+# Handwriting-Based Gender Classification ✍️👩‍🧑
 
-This project applies Machine Learning / Deep Learning techniques to classify gender based on handwriting samples. Handwriting contains unique biometric features, and by analyzing strokes, curves, and styles, we can build a model that predicts whether the writer is male or female.
+A machine learning and deep learning based project to classify **gender from handwriting samples**.  
+By analyzing handwriting strokes, curves, and writing patterns, this project predicts whether the writer is **male or female**.  
 
-Features
+---
 
-Preprocessing of handwriting images (grayscale, thresholding, normalization)
+## 📖 Table of Contents
+- [Features](#-features)
+- [Project Structure](#-project-structure)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Results](#-results)
+- [Known Issues / Bugs](#-known-issues--bugs)
+- [Future Work](#-future-work)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-Feature extraction (classical + deep learning approaches)
+---
 
-Model training and evaluation using algorithms (CNN, SVM, etc.)
+## 🚀 Features
+- Preprocessing of handwriting images (grayscale, thresholding, normalization)  
+- Feature extraction using classical ML and deep learning  
+- Model training and evaluation with CNN, SVM, and Random Forest  
+- Performance metrics: accuracy, confusion matrix, prediction samples  
+- Modular code structure for easy extension  
 
-Accuracy reports, confusion matrix, and visualizations
+---
 
-Easy-to-extend for other handwriting-based biometric tasks
-
-Project Structure
+## 📂 Project Structure
 Handwriting-based-gender-classification/
 │
-├── dataset/                # Handwriting samples (train/test)
-├── notebooks/              # Jupyter notebooks for experiments
-├── src/                    # Source code (models, preprocessing, training)
-│   ├── preprocessing.py
-│   ├── train.py
-│   ├── evaluate.py
-│   └── model.py
-├── results/                # Trained models, metrics, and plots
-├── requirements.txt        # Python dependencies
-└── README.md               # Project documentation
+├── dataset/ # Handwriting samples (train/test)
+├── notebooks/ # Jupyter notebooks for experiments
+├── src/ # Source code (models, preprocessing, training)
+│ ├── preprocessing.py
+│ ├── train.py
+│ ├── evaluate.py
+│ └── model.py
+├── results/ # Trained models, metrics, and plots
+├── requirements.txt # Python dependencies
+└── README.md # Project documentation
 
-Installation
+yaml
+Copy code
 
-Clone the repository
+---
 
+## ⚙️ Installation
+
+### 1. Clone the repository
+```bash
 git clone git@github.com:Afnankhan8/Handwriting-based-gender-classification.git
 cd Handwriting-based-gender-classification
-
-
-Create a virtual environment (optional but recommended)
-
+2. Create a virtual environment (recommended)
+bash
+Copy code
 python -m venv venv
-source venv/bin/activate   # On Linux/Mac
-venv\Scripts\activate      # On Windows
-
-
-Install dependencies
-
+# On Linux/Mac
+source venv/bin/activate
+# On Windows
+venv\Scripts\activate
+3. Install dependencies
+bash
+Copy code
 pip install -r requirements.txt
-
-Usage
+🧑‍💻 Usage
 Training the model
+bash
+Copy code
 python src/train.py --dataset dataset/ --epochs 20 --batch-size 32
-
 Evaluating the model
+bash
+Copy code
 python src/evaluate.py --model results/best_model.pth --test dataset/test
+📊 Results
+Accuracy: XX% (replace with your actual results after training)
 
-Results
+Comparison of CNN vs SVM and Random Forest
 
-Achieved XX% accuracy using CNN on the handwriting dataset
+Visualizations available in results/ folder
 
-Compared with SVM and Random Forest models
+🐛 Known Issues / Bugs
+Dataset size is limited → may affect accuracy
 
-Includes confusion matrix and prediction visualizations
+Results can vary if dataset is unbalanced
 
-(Update this section with your actual results after training)
+Training requires GPU for faster performance (CPU will be very slow)
 
-Future Work
+No deployment interface yet (CLI only)
 
-Extend dataset for better performance
+👉 If you find more issues, please create an Issue in the repo.
 
-Try transformer-based models
+🔮 Future Work
+Collect larger and more diverse handwriting datasets
 
-Deploy as a web app with Flask or Streamlit
+Try advanced deep learning models (Transformers)
 
-Add classification for age group or handedness
+Add deployment via Flask/Streamlit web app
 
-Contributing
+Extend classification to age group and handedness (left/right)
 
-Contributions are welcome. Fork this repository, create a branch, and submit a pull request.
+🤝 Contributing
+Contributions are welcome!
 
-License
+Fork this repository
 
-This project is licensed under the MIT License.
+Create a new branch (git checkout -b feature-xyz)
+
+Commit your changes (git commit -m "Add new feature")
+
+Push to your branch (git push origin feature-xyz)
+
+Open a Pull Request
+
+📜 License
+This project is licensed under the MIT License. You are free to use, modify, and distribute it with proper attribution.
+
+🙌 Acknowledgements
+Inspired by research on handwriting biometrics
+
+Built with Python, OpenCV, scikit-learn, TensorFlow/PyTorch
