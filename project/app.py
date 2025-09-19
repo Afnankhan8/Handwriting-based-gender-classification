@@ -30,13 +30,13 @@ mail = Mail(app)
 # Configure API key
 genai.configure(api_key="AIzaSyBoA3jKfAADBS_phUeY4947KUexrohG1mQ")
 
-# MySQL Configuration
-DB_CONFIG = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': 'Afnan@9148168146',
-    'database': 'handwriting_gender_classification'
-}
+# # MySQL Configuration
+# DB_CONFIG = {
+#     'host': 'localhost',
+#     'user': 'root',
+#     'password': 'Afnan@9148168146',
+#     'database': 'handwriting_gender_classification'
+# }
 
 PREFERRED_MODEL = "gemini-1.5-flash-latest"
 FALLBACK_MODEL = "gemini-1.0-pro-latest"
