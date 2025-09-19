@@ -42,7 +42,7 @@ PREFERRED_MODEL = "gemini-1.5-flash-latest"
 FALLBACK_MODEL = "gemini-1.0-pro-latest"
 
 # Load CNN model
-CNN_MODEL = load_model(r'C:\Users\Afnan khan\Desktop\Handwriting-based gender classification\project\cnn_multi_task_model.h5')
+CNN_MODEL = load_model(r'C:\Users\Afnan khan\Desktop\Handwriting-based gender classification\project\cnn_gender_model.h5')
 
 # Initialize database connection
 def init_db():
