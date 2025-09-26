@@ -748,6 +748,7 @@
                     
                     // Demo results for Gemini
                     const geminiGender = Math.random() > 0.5 ? "Female" : "Male";
+                    const ageGroup = Math.random() > 0.5 ? "Child (0-12)" : "Teenager (13-19)"; // Simulated age group
                     const match = geminiGender === cnnGender ? 
                         "Both models agree on the gender prediction" : 
                         "Models have different predictions";
@@ -765,7 +766,7 @@
                         <h3>Gender: ${geminiGender}</h3>
                         <p>${match}</p>
                         <p><strong>Handedness:</strong> Right-handed</p>
-                        <p><strong>Age Group:</strong> Adult</p>
+                        <p><strong>Age Group:</strong> ${ageGroup}</p>
                         <p><strong>Traits:</strong> Consistent start, Medium letter size, Relatively uniform letter spacing, Simple letter forms, Some variation in letter pressure, Overall neat and legible</p>
                     `;
                 }, 2000);
