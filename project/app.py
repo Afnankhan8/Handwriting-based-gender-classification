@@ -19,13 +19,7 @@ from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'afnankhanwork@gmail.com'
-app.config['MAIL_PASSWORD'] = 'kyve xlma tawe exby'
 
-mail = Mail(app)
 
 # Configure API key
 genai.configure(api_key="AIzaSyBoA3jKfAADBS_phUeY4947KUexrohG1mQ")
@@ -38,8 +32,14 @@ DB_CONFIG = {
     'database': 'handwriting_gender_classification'
 }
 
-PREFERRED_MODEL = "gemini-1.5-flash-latest"
-FALLBACK_MODEL = "gemini-1.0-pro-latest"
+
+# app.py (Around line 30)
+
+# CRITICAL FIX: Use the 'models/' prefix AND the latest public models.
+# gemini-1.5-flash is the recommended multimodal model.
+PREFERRED_MODEL = "models/gemini-1.5-flash" 
+FALLBACK_MODEL = "models/gemini-2.5-flash"  # Using 2.5-flash as a fallback model
+
 
 # Load CNN model
 CNN_MODEL = load_model(r'C:\Users\Afnan khan\Desktop\Handwriting-based gender classification\project\cnn_gender_model.h5')
@@ -152,6 +152,8 @@ def save_contact_message(name, email, subject, message):
             cursor.close()
             conn.close()
 
+
+
 # Gemini Predictor Functions
 def clean_json_response(text):
     """Remove markdown code fences and extra formatting."""
@@ -166,10 +168,14 @@ def clean_json_response(text):
 def predict_handwriting_features(image_bytes):
     """Predict handwriting attributes from an image."""
     model_name = PREFERRED_MODEL
-
-    for attempt in range(2):  # Try preferred then fallback
+    raw_text = ""
+    for attempt in range(2):
         try:
+            print(f"Using model: {model_name}")
+            
+           
             model = genai.GenerativeModel(model_name)
+            
 
             prompt = (
                 "You are a handwriting analysis AI. "
@@ -202,10 +208,14 @@ def predict_handwriting_features(image_bytes):
             print(f"⚠️ Quota exceeded for {model_name}. Switching to fallback...")
             model_name = FALLBACK_MODEL
             time.sleep(2)
-
+            
         except json.JSONDecodeError as e:
             print(f"❌ JSON parsing error: {e}")
             print("🔹 Raw text was:", raw_text)
+            if attempt == 0:
+                model_name = FALLBACK_MODEL
+                time.sleep(2)
+                continue
             return {
                 "gender": "Unknown",
                 "handedness": "Unknown",
@@ -215,6 +225,10 @@ def predict_handwriting_features(image_bytes):
 
         except Exception as e:
             print(f"❌ Error: {e}")
+            if attempt == 0:
+                model_name = FALLBACK_MODEL
+                time.sleep(2)
+                continue
             return {
                 "gender": "Unknown",
                 "handedness": "Unknown",
